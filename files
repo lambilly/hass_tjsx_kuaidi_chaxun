@@ -1,0 +1,14 @@
+hass_tjsx_kuaidi_chaxun/
+├── custom_components/
+│   └── tjsx_kuaidi_chaxun/
+│       ├── __init__.py
+│       ├── manifest.json
+│       ├── config_flow.py
+│       ├── sensor.py
+│       ├── const.py
+│       └── translations/
+│           └── zh-Hans.json
+├── hacs.json
+├── README.md
+├── info.md
+└── LICENSE
