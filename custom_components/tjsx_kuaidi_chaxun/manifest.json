@@ -1,0 +1,12 @@
+{
+  "domain": "tjsx_kuaidi_chaxun",
+  "name": "天聚数行-快递查询",
+  "version": "1.0.0",
+  "documentation": "https://github.com/lambilly/hass_tjsx_kuaidi_chaxun",
+  "issue_tracker": "https://github.com/lambilly/hass_tjsx_kuaidi_chaxun/issues",
+  "dependencies": [],
+  "codeowners": ["@lambilly"],
+  "requirements": ["aiohttp>=3.8.0"],
+  "config_flow": true,
+  "iot_class": "cloud_polling"
+}
