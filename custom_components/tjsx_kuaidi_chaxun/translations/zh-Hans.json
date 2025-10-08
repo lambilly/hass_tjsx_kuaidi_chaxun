@@ -1,0 +1,40 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "天聚数行-快递查询",
+        "description": "首次使用请输入您的天聚数行API密钥",
+        "data": {
+          "api_key": "API密钥"
+        }
+      },
+      "express": {
+        "title": "添加快递查询",
+        "description": "请配置要查询的快递信息",
+        "data": {
+          "express_number": "快递单号",
+          "express_name": "快递名称",
+          "scan_interval": "查询周期（小时）"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到API",
+      "invalid_auth": "API密钥无效",
+      "unknown": "未知错误"
+    },
+    "abort": {
+      "already_configured": "该快递单号已配置"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "快递查询选项",
+        "data": {
+          "scan_interval": "查询周期（小时）"
+        }
+      }
+    }
+  }
+}
