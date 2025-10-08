@@ -93,26 +93,19 @@ action:
       title: "快递已签收"
       message: "您的快递 {{ state_attr('sensor.your_express_number', '快递单号') }} 已签收"
 ```
-注意事项
-快递签收后，集成会自动停止定期查询以节省 API 调用
-
-如需重新启用查询，请删除并重新添加该快递单号
-
-请合理设置查询周期，避免不必要的 API 调用费用
-
-支持
+# 注意事项
+•	快递签收后，集成会自动停止定期查询以节省 API 调用
+•	如需重新启用查询，请删除并重新添加该快递单号
+•	请合理设置查询周期，避免不必要的 API 调用费用
+# 支持
 如遇到问题，请：
-
-检查 Home Assistant 日志
-
-确认 API Key 有效且有余额
-
-确认快递单号正确
-
-在 GitHub Issues 提交问题
-
-许可证
+1.	检查 Home Assistant 日志
+2.	确认 API Key 有效且有余额
+3.	确认快递单号正确
+4.	在 GitHub Issues 提交问题
+# 许可证
 MIT License
-
-贡献
+# 贡献
 欢迎提交 Pull Request 和 Issue！
+
+
