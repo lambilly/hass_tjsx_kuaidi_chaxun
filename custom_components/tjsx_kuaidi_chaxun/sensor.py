@@ -61,6 +61,7 @@ class TJSXKuaidiChaxunDataUpdateCoordinator(DataUpdateCoordinator):
         self.api_key = api_key
         self.express_number = express_number
         self.express_name = express_name
+        self.scan_interval = scan_interval
         self._last_update_time = None
         self._is_delivered = False  # 标记快递是否已签收
 
@@ -138,7 +139,7 @@ class TJSXKuaidiChaxunSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = express_name if express_name else express_number
         self._attr_unique_id = f"{config_entry.entry_id}_{express_number}"
         
-        # 设置设备信息
+        # 设置设备信息 - 所有传感器都关联到同一个设备
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, "express_query_device")},
             name="快递查询",
@@ -191,6 +192,9 @@ class TJSXKuaidiChaxunSensor(CoordinatorEntity, SensorEntity):
             raw_content = latest_track.get("content", "")
             latest_dynamic = self._clean_content(raw_content)
         
+        # 获取更新周期
+        scan_interval = self.config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
+        
         attributes = {
             "快递单号": self.config_entry.data[CONF_EXPRESS_NUMBER],
             "快递公司": result.get("kuaidiname", ""),
@@ -203,6 +207,7 @@ class TJSXKuaidiChaxunSensor(CoordinatorEntity, SensorEntity):
             "轨迹数量": len(result.get("list", [])),
             "最新动态": latest_dynamic,
             "已签收": self.coordinator.is_delivered,
+            "更新周期": f"{scan_interval} 小时",  # 新增属性
         }
         
         # 保留原有的最新轨迹信息（已清理过的）

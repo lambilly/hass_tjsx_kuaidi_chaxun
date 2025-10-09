@@ -67,6 +67,11 @@ class TJSXKuaidiChaxunConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 if existing_entries:
                     api_key = existing_entries[0].data.get(CONF_API_KEY)
             
+            # 检查是否已存在相同的快递单号
+            for entry in self._async_current_entries():
+                if entry.data.get(CONF_EXPRESS_NUMBER) == user_input[CONF_EXPRESS_NUMBER]:
+                    return self.async_abort(reason="already_configured")
+            
             # 创建配置条目
             data = {
                 CONF_API_KEY: api_key,
@@ -111,6 +116,14 @@ class TJSXKuaidiChaxunOptionsFlow(config_entries.OptionsFlow):
     async def async_step_init(self, user_input=None):
         """Manage the options."""
         if user_input is not None:
+            # 更新配置条目数据
+            self.hass.config_entries.async_update_entry(
+                self.config_entry,
+                data={
+                    **self.config_entry.data,
+                    CONF_SCAN_INTERVAL: user_input[CONF_SCAN_INTERVAL]
+                }
+            )
             return self.async_create_entry(title="", data=user_input)
 
         return self.async_show_form(
